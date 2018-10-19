@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fonn"
+    tools:context=".vistas.RegistrarNotas">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bloc"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#fff"
+            android:text="Ingrese titulo"/>
+        <EditText
+            android:id="@+id/registrar_notas_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textColor="#fff"
+            android:layout_margin="20dp"
+            android:background="@drawable/input_redondo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:text="Ingrese descripcion"/>
+        <EditText
+            android:id="@+id/registrar_notas_descripcion"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/input_redondo"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_registrar_nota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="botonesNotas"
+                android:layout_marginRight="5dp"
+                android:textColor="#fff"
+                android:background="@drawable/btn_redondo"
+                android:text="GUARDAR"/>
+            <Button
+                android:id="@+id/btn_atras_vista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="botonesNotas"
+                android:layout_marginLeft="5dp"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:background="@drawable/btn_redondo"
+                android:text="ATRAS"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

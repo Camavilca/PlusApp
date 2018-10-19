@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/registro"
+    android:layout_height="match_parent"
+    tools:context=".vistas.Registrar">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/l" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"
+            android:text="Usuario"/>
+        <EditText
+            android:id="@+id/registro_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp"
+            android:padding="8dp"
+            android:textColor="#fff"
+            android:background="@drawable/input_redondo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Nombre Completo"/>
+
+        <EditText
+            android:id="@+id/registro_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp"
+            android:padding="8dp"
+            android:textColor="#fff"
+            android:background="@drawable/input_redondo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"
+            android:text="Correo Electronico"/>
+        <EditText
+            android:id="@+id/registro_correo"
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp"
+            android:padding="8dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/input_redondo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:text="Contraseña"/>
+        <EditText
+            android:id="@+id/registro_contraseña"
+            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp"
+            android:padding="8dp"
+            android:inputType="textPassword"
+            android:background="@drawable/input_redondo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/regitro_btn_registrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_redondo"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:onClick="Accion"
+                android:text="Registrar" />
+
+            <Button
+                android:id="@+id/registro_btn_atras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_redondo"
+                android:layout_marginLeft="5dp"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="Accion"
+                android:text="Atras" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:title="Home"
+        android:icon="@android:drawable/ic_dialog_dialer" />
+
+    <item
+        android:id="@+id/menu_favorito"
+        android:title="Favoritos"
+        android:icon="@android:drawable/btn_star_big_off" />
+
+    <item
+        android:id="@+id/menu_archivados"
+        android:title="Archivados"
+        android:icon="@android:drawable/ic_menu_delete"
+        />
+</menu>
