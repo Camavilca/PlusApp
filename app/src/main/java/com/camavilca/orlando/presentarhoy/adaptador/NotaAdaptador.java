@@ -20,6 +20,7 @@ import com.camavilca.orlando.presentarhoy.modelo.Nota;
 import com.camavilca.orlando.presentarhoy.repositorio.RepositorioNota;
 import com.camavilca.orlando.presentarhoy.vistas.Detalle;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
+import com.orm.SugarRecord;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotaAdaptador.ViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull final NotaAdaptador.ViewHolder holder, final int position) {
         final Nota note = this.notas.get(position);
         int color = ColorGenerator.MATERIAL.getColor(note.getTitulo());
         TextDrawable drawable = TextDrawable.builder().buildRect(note.getTitulo().substring(0,1),color);
@@ -84,6 +85,13 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
                 Intent intent = new Intent(view.getContext(), Detalle.class);
                 intent.putExtra("ID",note.getId());
                 view.getContext().startActivity(intent);
+                if (holder.favorito.isChecked()){
+                    updateFavorito(true,note.getId());
+                    Toast.makeText(view.getContext(),"FAVORITO",Toast.LENGTH_SHORT).show();
+                }
+                if(holder.archivar2.isChecked()){
+                    Toast.makeText(view.getContext(),"archivado",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -107,9 +115,17 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
             descri = (TextView)itemView.findViewById(R.id.notas_descripcion);
             fecha = (RelativeTimeTextView)itemView.findViewById(R.id.notas_fecha);
             pictureImage = (ImageView)itemView.findViewById(R.id.picture_image);
+            //Eliminar es el boton archivar
+
             archivar = (ImageButton)itemView.findViewById(R.id.archivar);
             favorito = (CheckBox)itemView.findViewById(R.id.favorito);
+
             archivar2 = (CheckBox)itemView.findViewById(R.id.archivar2);
         }
+    }
+    public void updateFavorito(Boolean favorito,Long id){
+        Nota nota = SugarRecord.findById(Nota.class,id);
+        nota.setFavorito(true);
+        SugarRecord.save(nota);
     }
 }

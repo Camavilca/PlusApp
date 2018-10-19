@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,24 @@ public class VistaPrincipalNotas extends AppCompatActivity {
     private static final int REGISTER_FORM_REQUEST = 100;
     private RecyclerView recyclerView;
     TextView nombre_del_usuario;
+    private CheckBox detalle_favorito;
+    private CheckBox detalle_archivado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_principal_notas);
+        /*
+        * Se esta agregando esto manito para el favorito y archivado
+        * */
+        detalle_favorito = (CheckBox)findViewById(R.id.detalle_favorito);
+        detalle_archivado = (CheckBox)findViewById(R.id.detalle_archivado);
+
+        /**
+         * FIN DE LO DE AGREGADO
+         * */
+
+
         nombre_del_usuario = (TextView)findViewById(R.id.nombre_del_usuario);
         recyclerView = (RecyclerView)findViewById(R.id.mostrar_notas_agregadas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

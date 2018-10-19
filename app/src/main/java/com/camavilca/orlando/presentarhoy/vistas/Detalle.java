@@ -37,7 +37,10 @@ public class Detalle extends AppCompatActivity {
         detalle_titulo.setText(nota.getTitulo());
         detalle_contenido.setText(nota.getDescripcion());
 
-        Toast.makeText(this,"v: "+nota.getFavorito(),Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(this,"v: "+detalle_favorito,Toast.LENGTH_SHORT).show();
+
+
 
         if (nota.getFavorito()){
             detalle_favorito.setVisibility(View.VISIBLE);
