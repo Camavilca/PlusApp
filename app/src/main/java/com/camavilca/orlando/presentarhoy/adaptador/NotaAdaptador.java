@@ -54,13 +54,18 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
         holder.fecha.setReferenceTime(note.getFecha().getTime());
         /*
             OJO CON ESTO PARA PREGUNTAR AL PROFE DE MRD
-        holder.favorito.setChecked(note.getFavorito());
         holder.archivar2.setChecked(note.getArchivar());*/
+
+        holder.favorito.setChecked(note.getFavorito());
+
 
         holder.favorito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                note.setFavorito(b);
+//                updateFavorito(b, note.getId());
                 note.setFavorito(b);
+                SugarRecord.save(note);
             }
         });
         holder.archivar2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -85,13 +90,13 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
                 Intent intent = new Intent(view.getContext(), Detalle.class);
                 intent.putExtra("ID",note.getId());
                 view.getContext().startActivity(intent);
-                if (holder.favorito.isChecked()){
-                    updateFavorito(true,note.getId());
-                    Toast.makeText(view.getContext(),"FAVORITO",Toast.LENGTH_SHORT).show();
-                }
-                if(holder.archivar2.isChecked()){
-                    Toast.makeText(view.getContext(),"archivado",Toast.LENGTH_SHORT).show();
-                }
+//                if (holder.favorito.isChecked()){
+////                    updateFavorito(true,note.getId());
+//                    Toast.makeText(view.getContext(),"FAVORITO",Toast.LENGTH_SHORT).show();
+//                }
+//                if(holder.archivar2.isChecked()){
+//                    Toast.makeText(view.getContext(),"archivado",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
