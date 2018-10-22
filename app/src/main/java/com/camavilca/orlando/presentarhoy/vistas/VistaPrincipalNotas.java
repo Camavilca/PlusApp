@@ -3,6 +3,8 @@ package com.camavilca.orlando.presentarhoy.vistas;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.camavilca.orlando.presentarhoy.Fragmentos.ArchivadosFragment;
+import com.camavilca.orlando.presentarhoy.Fragmentos.FavoritosFragment;
+import com.camavilca.orlando.presentarhoy.Fragmentos.HomeFragment;
 import com.camavilca.orlando.presentarhoy.R;
 import com.camavilca.orlando.presentarhoy.adaptador.NotaAdaptador;
 import com.camavilca.orlando.presentarhoy.modelo.Nota;
@@ -30,6 +35,7 @@ public class VistaPrincipalNotas extends AppCompatActivity {
     private CheckBox detalle_favorito;
     private CheckBox detalle_archivado;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,25 +52,34 @@ public class VistaPrincipalNotas extends AppCompatActivity {
 
 
         nombre_del_usuario = (TextView)findViewById(R.id.nombre_del_usuario);
-        recyclerView = (RecyclerView)findViewById(R.id.mostrar_notas_agregadas);
+        /*recyclerView = (RecyclerView)findViewById(R.id.mostrar_notas_agregadas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<Nota> notas = RepositorioNota.listar();
-        recyclerView.setAdapter(new NotaAdaptador(notas));
+        recyclerView.setAdapter(new NotaAdaptador(notas));*/
+
+        FragmentManager fragmentManager  = getSupportFragmentManager();
+        Fragment fragment  = new HomeFragment();
+        fragmentManager.beginTransaction().replace(R.id.vista_principal_notas,fragment).addToBackStack("tag").commit();
         String nombre = RepositorioUsuario.nombre;
         nombre_del_usuario.setText("Bienvenido: "+ nombre.toUpperCase());
         BottomNavigationView b = (BottomNavigationView)findViewById(R.id.bootom_navigation);
         b.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
                 switch (item.getItemId()){
                     case R.id.menu_home:
-                        Toast.makeText(getApplicationContext(),"HOME",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"HOME",Toast.LENGTH_SHORT).show();
+                        Fragment fragment2  =new HomeFragment();
+                        fragmentManager.beginTransaction().replace(R.id.vista_principal_notas,fragment2).addToBackStack("tag").commit();
                         break;
                     case R.id.menu_favorito:
-                        Toast.makeText(getApplicationContext(),"FAVORITOS",Toast.LENGTH_SHORT).show();
+                        Fragment fragment = new FavoritosFragment();
+                        fragmentManager.beginTransaction().replace(R.id.vista_principal_notas,fragment).addToBackStack("tag").commit();
                         break;
                     case R.id.menu_archivados:
-                        Toast.makeText(getApplicationContext(),"ARCHIVADOS",Toast.LENGTH_SHORT).show();
+                        Fragment fragment1 = new ArchivadosFragment();
+                        fragmentManager.beginTransaction().replace(R.id.vista_principal_notas,fragment1).addToBackStack("tag").commit();
                         break;
                 }
                 return true;
@@ -76,12 +91,6 @@ public class VistaPrincipalNotas extends AppCompatActivity {
     public void agregarNotas(View view) {
         startActivityForResult(new Intent(this,RegistrarNotas.class),REGISTER_FORM_REQUEST);
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        NotaAdaptador notaAdaptador = (NotaAdaptador)recyclerView.getAdapter();
-        List<Nota> notas = RepositorioNota.listar();
-        notaAdaptador.setNotas(notas);
-        notaAdaptador.notifyDataSetChanged();
-    }
+
+
 }

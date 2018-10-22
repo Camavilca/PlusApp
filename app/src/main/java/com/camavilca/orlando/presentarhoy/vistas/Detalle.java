@@ -21,6 +21,8 @@ public class Detalle extends AppCompatActivity {
     private TextView detalle_contenido;
     private CheckBox detalle_favorito;
     private CheckBox detalle_archivado;
+    private TextView detalle_fecha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,23 +31,26 @@ public class Detalle extends AppCompatActivity {
         detalle_contenido = (TextView)findViewById(R.id.detalle_contenido);
         detalle_favorito = (CheckBox)findViewById(R.id.detalle_favorito);
         detalle_archivado = (CheckBox)findViewById(R.id.detalle_archivado);
+        detalle_fecha = (TextView) findViewById(R.id.detalle_fecha);
+
         id = getIntent().getExtras().getLong("ID");
         Log.e(TAG,"ID: "+id);
 
         Nota nota = RepositorioNota.get(id);
 
-        detalle_titulo.setText(nota.getTitulo());
-        detalle_contenido.setText(nota.getDescripcion());
-
-
-        //Toast.makeText(this,"v: "+detalle_favorito,Toast.LENGTH_SHORT).show();
-
-
+        detalle_titulo.setText("Titulo: "+nota.getTitulo());
+        detalle_contenido.setText("Descripcion: "+nota.getDescripcion());
+        detalle_fecha.setText("Fecha: "+nota.getFecha());
 
         if (nota.getFavorito()){
             detalle_favorito.setVisibility(View.VISIBLE);
         }else{
             detalle_favorito.setVisibility(View.GONE);
+        }
+        if(nota.getArchivar()){
+            detalle_archivado.setVisibility(View.VISIBLE);
+        }else{
+            detalle_archivado.setVisibility(View.GONE);
         }
 
     }

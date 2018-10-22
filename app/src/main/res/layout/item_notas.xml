@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="16dp">
 
         <ImageView
@@ -75,8 +75,8 @@
             style="?android:attr/startOffset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/notas_titulo"
-            android:layout_alignTop="@+id/picture_image" />
+            android:layout_alignStart="@+id/favorito"
+            android:layout_centerVertical="true" />
 
         <ImageButton
             android:id="@+id/archivar"

@@ -3,70 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/fonn"
     android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/title_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
             android:background="@drawable/bg_border_bottom"
-            android:padding="16dp">
-
+            android:padding="50dp">
             <TextView
                 android:id="@+id/detalle_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_toStartOf="@+id/favorito"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
+                android:maxLines="1"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end"
-                tools:text="Título de la nota"
-                tools:ignore="UnknownId" />
-
+                tools:ignore="UnknownId"
+                tools:text="Título de la nota" />
+            <TextView
+                android:id="@+id/detalle_fecha"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/detalle_titulo"
+                android:layout_below="@+id/detalle_titulo"
+                android:text="Fecha"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic" />
             <CheckBox
                 android:id="@+id/detalle_favorito"
+                style="?android:attr/starStyle"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                style="?android:attr/starStyle"
                 android:layout_alignParentEnd="true"
                 android:checked="true"
-                android:clickable="false"/>
-
+                android:clickable="false" />
             <CheckBox
                 android:id="@+id/detalle_archivado"
                 style="?android:attr/startOffset"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="60dp"
+                android:layout_alignTop="@+id/detalle_titulo"
+                android:layout_marginEnd="64dp"
                 android:checked="true"
                 android:clickable="false" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_layout"
-            android:padding="16dp">
-
             <TextView
                 android:id="@+id/detalle_contenido"
-                android:layout_width="match_parent"
+                android:layout_width="188dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/detalle_fecha"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
-                tools:text="Contenido de la nota ..."/>
-
+                tools:text="Contenido de la nota ..." />
         </RelativeLayout>
-
-    </RelativeLayout>
-
 </ScrollView>

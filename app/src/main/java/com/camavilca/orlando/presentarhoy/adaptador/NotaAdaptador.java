@@ -53,8 +53,8 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
         holder.descri.setText(note.getDescripcion());
         holder.fecha.setReferenceTime(note.getFecha().getTime());
         /*
-            OJO CON ESTO PARA PREGUNTAR AL PROFE DE MRD
-        holder.archivar2.setChecked(note.getArchivar());*/
+            OJO CON ESTO PARA PREGUNTAR AL PROFE DE MRD*/
+        holder.archivar2.setChecked(note.getArchivar());
 
         holder.favorito.setChecked(note.getFavorito());
 
@@ -62,8 +62,6 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
         holder.favorito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                note.setFavorito(b);
-//                updateFavorito(b, note.getId());
                 note.setFavorito(b);
                 SugarRecord.save(note);
             }
@@ -72,6 +70,7 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 note.setArchivar(b);
+                SugarRecord.save(note);
             }
         });
         holder.archivar.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +80,7 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
                 notas.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position,getItemCount());
-                Toast.makeText(view.getContext(),"Nota Archivada correctamente",Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(),"Nota Eliminada",Toast.LENGTH_SHORT).show();
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -90,15 +89,9 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
                 Intent intent = new Intent(view.getContext(), Detalle.class);
                 intent.putExtra("ID",note.getId());
                 view.getContext().startActivity(intent);
-//                if (holder.favorito.isChecked()){
-////                    updateFavorito(true,note.getId());
-//                    Toast.makeText(view.getContext(),"FAVORITO",Toast.LENGTH_SHORT).show();
-//                }
-//                if(holder.archivar2.isChecked()){
-//                    Toast.makeText(view.getContext(),"archivado",Toast.LENGTH_SHORT).show();
-//                }
             }
         });
+
     }
 
     @Override
@@ -128,9 +121,9 @@ public class NotaAdaptador extends RecyclerView.Adapter<NotaAdaptador.ViewHolder
             archivar2 = (CheckBox)itemView.findViewById(R.id.archivar2);
         }
     }
-    public void updateFavorito(Boolean favorito,Long id){
+  /*  public void updateFavorito(Boolean favorito,Long id){
         Nota nota = SugarRecord.findById(Nota.class,id);
         nota.setFavorito(true);
         SugarRecord.save(nota);
-    }
+    }*/
 }
