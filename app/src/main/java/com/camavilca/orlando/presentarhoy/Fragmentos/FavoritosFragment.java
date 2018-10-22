@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.camavilca.orlando.presentarhoy.R;
 import com.camavilca.orlando.presentarhoy.adaptador.NotaAdaptador;
 import com.camavilca.orlando.presentarhoy.modelo.Nota;
-import com.camavilca.orlando.presentarhoy.repositorio.RepositorioFragmentos;
 import com.camavilca.orlando.presentarhoy.repositorio.RepositorioNota;
 
 import java.util.List;
@@ -44,16 +43,14 @@ public class FavoritosFragment extends Fragment {
         detalle_archivado = (CheckBox)view.findViewById(R.id.detalle_archivado);
         detalle_favorito = (CheckBox)view.findViewById(R.id.detalle_favorito);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<Nota> notas = RepositorioFragmentos.listarFavorito();
-        for (Nota nota: notas) {
-            if (nota.getFavorito().equals(true)){
-                if (nota.getArchivar().equals(false)){
-                    recyclerView.setAdapter(new NotaAdaptador(notas));
-                }
-            }else{
-                Toast.makeText(getContext(),"NO HAY DATOS",Toast.LENGTH_SHORT).show();
-            }
+        List<Nota> favoritos = RepositorioNota.listarFavoritos();
+
+        if(favoritos.isEmpty()){
+            Toast.makeText(getContext(),"NO HAY DATOS",Toast.LENGTH_SHORT).show();
+        }else{
+            recyclerView.setAdapter(new NotaAdaptador(favoritos));
         }
+
         return view;
     }
     public void onButtonPressed(Uri uri) {
@@ -77,7 +74,7 @@ public class FavoritosFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         NotaAdaptador notaAdaptador = (NotaAdaptador)recyclerView.getAdapter();
-        List<Nota> notas = RepositorioFragmentos.listarFavorito();
+        List<Nota> notas = RepositorioNota.listarFavoritos();
         notaAdaptador.setNotas(notas);
         notaAdaptador.notifyDataSetChanged();
     }

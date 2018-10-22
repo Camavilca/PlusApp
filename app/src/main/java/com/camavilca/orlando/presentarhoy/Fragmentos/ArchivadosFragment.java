@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.camavilca.orlando.presentarhoy.R;
 import com.camavilca.orlando.presentarhoy.adaptador.NotaAdaptador;
 import com.camavilca.orlando.presentarhoy.modelo.Nota;
-import com.camavilca.orlando.presentarhoy.repositorio.RepositorioFragmentos;
+import com.camavilca.orlando.presentarhoy.repositorio.RepositorioNota;
 
 import java.util.List;
 
@@ -37,18 +37,12 @@ public class ArchivadosFragment extends Fragment {
         detalle_archivado = (CheckBox)view.findViewById(R.id.detalle_archivado);
         recyclerView = (RecyclerView)view.findViewById(R.id.mostrar_item_archivados);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<Nota> notas = RepositorioFragmentos.listarFavorito();
-        //Nota nota = new Nota();
-        for (Nota nota:notas) {
-            if(nota.getArchivar().equals(true)){
-                if (nota.getFavorito().equals(false)){
-                    recyclerView.setAdapter(new NotaAdaptador(notas));
-                }
-            }else{
-                Toast.makeText(getContext(),"NO HAY DATOS",Toast.LENGTH_SHORT).show();
-            }
+        List<Nota> archivados = RepositorioNota.listarArchivados();
+        if (archivados.isEmpty()){
+             Toast.makeText(getContext(),"NO HAY DATOS",Toast.LENGTH_SHORT).show();
+        }else{
+              recyclerView.setAdapter(new NotaAdaptador(archivados));
         }
-
         return view;
     }
     public void onButtonPressed(Uri uri) {
@@ -72,7 +66,7 @@ public class ArchivadosFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         NotaAdaptador notaAdaptador = (NotaAdaptador)recyclerView.getAdapter();
-        List<Nota> notas = RepositorioFragmentos.listarFavorito();
+        List<Nota> notas = RepositorioNota.listarArchivados();
         notaAdaptador.setNotas(notas);
         notaAdaptador.notifyDataSetChanged();
     }
